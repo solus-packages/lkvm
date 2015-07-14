@@ -1,0 +1,20 @@
+name       : lkvm
+version    : 20150327
+release    : 1
+source     :
+    - https://solus-project.com/sources/linux-kvm-20150327.tar.gz : f49d9d248cc9968d52c73c1a5777b19cb6edec0d3bf0ef434f896e5797dae98c
+license    : GPL-2.0
+summary    : Linux native KVM tool
+description: |
+    Linux native KVM tool
+builddeps  :
+    - libaio-devel
+build      : |
+    unset LDFLAGS
+    unset CFLAGS
+    cd tools/kvm
+    %make
+install    : |
+    cd tools/kvm
+    install -m 00755 -D ./lkvm $installdir/usr/bin/lkvm
+    install -m 00755 -D ./vm $installdir/usr/bin/vm
